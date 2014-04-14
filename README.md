@@ -10,6 +10,6 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_!@#$%^&*()+/{[]}
 <p><h3>Generate password method:</h3>
 <ul>
 <li><b> Password.generate() </b> - generate 5 random characters by default</li>
-<li><b> Password.generate(10) </b>- generate 5 random characters </li>
+<li><b> Password.generate(10) </b>- generate 10 random characters </li>
 </ul>
 </p>
