@@ -1,76 +1,104 @@
 /**************************************
  *
- *   Static methods for generating
- *   random passwords.
+ *   Module for generating
+ *   random passwords
+ *
+ *   Created by 
+ *   Aleksandr Filatov (c)
  * 
  * ***********************************/
 var Password = (function() {
 
-	var digits = "0123456789";
-	var alphabet = "abcdefghijklmnopqrstuvwxyz";
-	var alphabetCapitalized = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	var spec = "-_!@#$%^&*()+/{[]}|\;:'<>?";
+	var _digits 			 = "0123456789";
+	var _alphabet 			 = "abcdefghijklmnopqrstuvwxyz";
+	var _alphabetCapitalized = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	var _spec 				 = "-_!@#$%^&*()+/{[]}|\;:'<>?";
 
-	var randInt = function(min, max){
+	var _randInt = function(min, max){
 		return Math.floor(Math.random() * (max - min + 1)) + min;
-	}
-	
-	var agregateChars = function(useDigits, useAlphabet, useAlphabetCapitalized, useSpec) {
+	};
+
+	var _agregateChars = function(useDigits, useAlphabet, useAlphabetCapitalized, useSpec) {
 		var chars = "";
-		
+
 		if (useDigits)
-			chars += digits;
+			chars += _digits;
 		if (useAlphabet)
-			chars += alphabet;
+			chars += _alphabet;
 		if (useAlphabetCapitalized)
-			chars += alphabetCapitalized;
+			chars += _alphabetCapitalized;
 		if (useSpec)
-			chars += spec;	
+			chars += _spec;
 			
 		return chars;
-	}
+	};
+	
+	/***************************************
+	*   Private method
+	*   for generating random one password
+	* *************************************/
+	var _generateOne = function(config, chars) {
+		var password = "";
+
+		for(var i = 0; i < config.length; i++){
+			// generate a random position in
+			// possible character string
+			var randomPos = _randInt(0, chars.length - 1);
+
+			// get the char at this position from
+			// possible character string
+			var c = chars.charAt(randomPos);
+
+			// append character to already
+			// generated string
+			password += c;
+		}
+		
+		// return the password
+		return password;
+	};
 
 	return {
+	
+		/***************************************
+		*    Common config settings 
+		* *************************************/
 		config: {
-			useDigits : true,
-			useAlphabet : true,
-			useAlphabetCapitalized : true,
-			useSpec : true,
+			useDigits 				: true,
+			useAlphabet 			: true,
+			useAlphabetCapitalized  : true,
+			useSpec 				: true,
 			
-			numberOfPasswords : 1,
-			length : 5
+			numberOfPasswords 		: 1,
+			length 					: 5
 		},
-		
-		generate: function(){
-		
-			var password = "";
-			
+
+		/***************************************
+		*    Public common method 
+		*    for generating passwords
+		* *************************************/
+		generate: function(){	
 			var config = this.config;
-			var chars = agregateChars(config.useDigits, config.useAlphabet, config.useAlphabetCapitalized, config.useSpec);
-			  
-			// this will be a random sequence,
-			// so every character in our password
-			// will be picked individually
-			for(var i = 0; i < config.length; i++){
-				
-				// generate a random position in our
-				// possible character string
-				var randomPos = randInt(0, chars.length - 1);
-				
-				// get the char at this position from our
-				// possible character string
-				var c = chars.charAt(randomPos);
-				
-				// append character to already
-				// generated string
-				password += c;
+			
+			var chars = _agregateChars(
+				config.useDigits,
+				config.useAlphabet,
+				config.useAlphabetCapitalized,
+				config.useSpec
+			);
+
+			var passwordArray = [];
+			for (i = 0; i < config.numberOfPasswords; i++) {
+				passwordArray.push({
+						"key"  : i,
+						"pass" : _generateOne(config, chars)
+					}
+				);
 			}
 			
-			// return the password
-			return password;
+			return JSON.stringify(passwordArray);			
 		}
 	}
-	
 }());
 
 
