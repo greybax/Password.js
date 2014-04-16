@@ -64,13 +64,13 @@ var Password = (function() {
 		*    Common config settings 
 		* *************************************/
 		config: {
-			useDigits 				: true,
-			useAlphabet 			: true,
+			useDigits               : true,
+			useAlphabet             : true,
 			useAlphabetCapitalized  : true,
 			useSpec 				: true,
-			
-			numberOfPasswords 		: 1,
-			length 					: 5
+
+			numberOfPasswords       : 1,
+			length                  : 5
 		},
 
 		/***************************************
