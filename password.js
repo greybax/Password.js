@@ -9,10 +9,10 @@
  * ***********************************/
 var Password = (function() {
 
-	var _digits 			 = "0123456789";
-	var _alphabet 			 = "abcdefghijklmnopqrstuvwxyz";
+	var _digits              = "0123456789";
+	var _alphabet            = "abcdefghijklmnopqrstuvwxyz";
 	var _alphabetCapitalized = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	var _spec 				 = "-_!@#$%^&*()+/{[]}|\;:'<>?";
+	var _spec                = "-_!@#$%^&*()+/{[]}|\;:'<>?";
 
 	var _randInt = function(min, max){
 		return Math.floor(Math.random() * (max - min + 1)) + min;
