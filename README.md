@@ -17,13 +17,13 @@ Javascript library for generate random passwords
 <pre>
 <code>
   config: {
-  			useDigits 				      : true,
-  			useAlphabet 			      : true,
+  			useDigits               : true,
+  			useAlphabet             : true,
   			useAlphabetCapitalized  : true,
-  			useSpec 				        : true,
+  			useSpec                 : true,
   			
-  			numberOfPasswords 		  : 1,
-  			length 					        : 5
+  			numberOfPasswords       : 1,
+  			length                  : 5
   		}
   </code>
 </pre>
