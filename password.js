@@ -67,7 +67,7 @@ var Password = (function() {
 			useDigits               : true,
 			useAlphabet             : true,
 			useAlphabetCapitalized  : true,
-			useSpec 				: true,
+			useSpec                 : true,
 
 			numberOfPasswords       : 1,
 			length                  : 5
@@ -100,8 +100,3 @@ var Password = (function() {
 		}
 	}
 }());
-
-
-
-
-
