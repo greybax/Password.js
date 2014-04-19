@@ -28,6 +28,18 @@ Javascript library for generate random passwords
   </code>
 </pre>
 
+<p><h3>Check password entropy:</h3>
+<p> bits = Math.floor(Math.log(charset)*(lenght/Math.log(2))) </p>
+<pre>
+<ul>
+<li> <b> bits </b> - bit resistance </li>
+<li> <b> log </b> - natural logarithm </li>
+<li> <b> length </b> - password length </li>
+<li> <b> charset </b> - sets the total size for each of the types below, if they exist in possible characters in passwords </li>
+</pre>
+
+<i> Example: </i> Password.checkEntropy('jjF25jVNGI') equals 59
+
 </p>
 
 <p><h3>Simply to use:</h3>
