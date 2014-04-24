@@ -3,10 +3,10 @@
  *   Module for generating
  *   random passwords
  *
- *   Created by 
+ *   Created by
  *   Aleksandr Filatov (c)
  * 
- * ***********************************/
+ *************************************/
 var Password = (function() {
 
 	var _digits              = "0123456789";
@@ -37,7 +37,7 @@ var Password = (function() {
 	*   Private method
 	*   for generating random one password
 	* *************************************/
-	var _generateOne = function(config, chars) {
+	var _generateOnePass = function(config, chars) {
 		var password = "";
 
 		for(var i = 0; i < config.length; i++){
@@ -91,15 +91,15 @@ var Password = (function() {
 			for (i = 0; i < config.numberOfPasswords; i++) {
 				passwordArray.push({
 						"key"  : i,
-						"pass" : _generateOne(config, chars)
+						"pass" : _generateOnePass(config, chars)
 					}
 				);
 			}
 			
 			return JSON.stringify(passwordArray);
 		},
-		
-        /***************************************
+
+		/***************************************
 		*    Public common method 
 		*    for calculation password entropy
 		* *************************************/
@@ -131,7 +131,7 @@ var Password = (function() {
 				else if (_digits.indexOf(c) != -1)
 					fDigit = true;
 			}
-		   
+
 			if (fAlphabet)
 				charset += alphabetChars;
 			if (fAlphabetCapitalized)
@@ -142,6 +142,37 @@ var Password = (function() {
 				charset += digitChars;
 			
 			return Math.floor(Math.log(charset) * (password.length / Math.log(2)));
+		},
+
+		/***************************************
+		*    Public encryption method 
+		*    for entering password
+		* *************************************/
+		encrypt: function (message, length) {
+			// If the message is the empty string, return the empty string.
+			if(message == "") {
+				return "";
+			}
+
+			// Calculate the offset of the first character.
+			var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split("");
+				for(var last = 0, i = 0, len = message.length; i < len; i++) {
+					last = (message.charCodeAt(i) + 31 * last) % 59;
+			}
+
+			// Adjust for the specified length if it was given.
+			length = length || message.length;
+				while(len < length) {
+					message += message;
+					len += len;
+			}
+			message = message.slice(0, length);
+
+			// Generate the encrypted string.
+			for(var ret = "", i = 0; i < length; i++) {
+				ret += chars[last = (i + last + message.charCodeAt(i)) % 64];
+			}
+			return ret;
 		}
 	}
 }());
