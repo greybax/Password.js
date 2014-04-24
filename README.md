@@ -36,9 +36,14 @@ Javascript library for generate random passwords
   <li> <b> length </b> - password length </li>
   <li> <b> charset </b> - sets the total size for each of the types below, if they exist in possible characters in     passwords </li>
 </ul>
-
 <i> Example: </i> Password.checkEntropy('jjF25jVNGI') equals 59
+</p>
 
+
+
+<p><h3>Encrypt password:</h3>
+<p> It's usefull method for generating password from your phrase, that you can simply remember</p>
+<i> Example: </i> Password.encrypt('my_password',10) returns password KElY91usje
 </p>
 
 <p><h3>Simply to use:</h3>
