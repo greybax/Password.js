@@ -2,6 +2,7 @@ Password.js
 ===========
 
 Javascript library for generate random passwords
+<a href="http://greybax.github.io/Password.js/">Demo</a>
 
 <p><h3>Possible characters in passwords are: </h3>
   <ul>
